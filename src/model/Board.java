@@ -12,10 +12,14 @@ public class Board {
             for (int j = 0; j < 9; j++) {
                 tiles[i][j] = new Tile(arr[i][j]);
 
+
             }
 
         }
+
     }
+
+
 
 
 }

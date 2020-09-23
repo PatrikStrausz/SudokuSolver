@@ -13,16 +13,16 @@ public class Tile {
 
     public Tile(int value) {
         this.value = value;
+        this.available = new HashSet<>();
         if (value >0){
             available = null;
         }
         else{
             Integer [] temp = {1,2,3,4,5,6,7,8,9};
-            assert false;
             Collections.addAll(available,temp);
         }
 
-        available = new HashSet<>();
+
     }
 
     public int getValue() {

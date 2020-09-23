@@ -15,6 +15,7 @@ public class SudokuSolver {
         }
 
         board = new Board(arr);
+        reduceAvailableValues();
 
     }
 
@@ -23,4 +24,30 @@ public class SudokuSolver {
        arr = new InputData().getData();
        return true;
     }
+
+    private void reduceAvailableValues() {
+        reduceAvailableValuesInRow();
+        reduceAvailableValuesInColumn();
+        reduceAvailableValuesInSquare();
+    }
+
+    private void reduceAvailableValuesInSquare() {
+    }
+
+    private void reduceAvailableValuesInColumn() {
+    }
+
+    private void reduceAvailableValuesInRow() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+
+
+            }
+
+        }
+    }
+
+
+
+
 }
