@@ -19,7 +19,7 @@ public class Board {
 
     }
 
-
-
-
+    public Tile[][] getTiles() {
+        return tiles;
+    }
 }

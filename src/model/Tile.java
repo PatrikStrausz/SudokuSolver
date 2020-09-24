@@ -1,7 +1,6 @@
 package model;
 
-import java.awt.*;
-import java.util.Arrays;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -47,5 +46,9 @@ public class Tile {
 
     public int getSize(){
         return available.size();
+    }
+
+    public Set<Integer> getAvailable() {
+        return available;
     }
 }
