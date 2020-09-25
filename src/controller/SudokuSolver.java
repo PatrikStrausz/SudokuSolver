@@ -42,6 +42,7 @@ public class SudokuSolver {
                             System.out.print(board.getTiles()[k][l].getValue()+" ");
 
                         }
+
                     }
 
                 }
