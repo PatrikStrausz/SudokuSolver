@@ -10,7 +10,7 @@ public class InputData {
     public int[][] getData() {
         try {
             String data = null;
-            File myObj = new File("C://Users//Boris//IdeaProjects//SudokuSolver//src//SudokuDemo.txt");
+            File myObj = new File("C:\\Users\\Pato\\IdeaProjects\\SudokuSolver\\src\\SudokuDemo.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 data = myReader.nextLine();
