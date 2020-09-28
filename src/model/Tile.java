@@ -38,6 +38,7 @@ public class Tile {
 
     public void remove(int value){
         available.remove(value);
+
     }
 
     public void add(int value){

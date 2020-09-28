@@ -27,85 +27,74 @@ public class SudokuSolver {
        return true;
     }
 
-    private void reduceAvailableValues() {
-        reduceAvailableValuesInRow();
-        reduceAvailableValuesInColumn();
-        reduceAvailableValuesInSquare();
+    public void reduceAvailableValues() {
+        int count = 0;
 
+        while (count < 50) {
+                   count++;
+            reduceAvailableValuesInRow();
+            reduceAvailableValuesInColumn();
+            reduceAvailableValuesInSquare();
+            assignValues();
+        }
     }
 
     private void reduceAvailableValuesInSquare() {
         System.out.println();
-        for (int i = 0; i < 9; i+=3) {
-            for (int j = 0; j <9 ; j+=3) {
-                for (int k = i; k <3 ; k++) {
-                    for (int l = j; l <3 ; l++) {
-                        if (board.getTiles()[k][l].getAvailable()!= null){
-
-                            board.getTiles()[k][l].remove(board.getTiles()[i][j].getValue());
-
-
-                        }
-
-                    }
-
-                }
-
-
-            }
-
-
-        }
-
-        for (int i = 0; i <9 ; i+=3) {
+        for (int i = 0; i < 9; i += 3) {
             for (int j = 0; j < 9; j += 3) {
 
-                    for (int k = 0; k < 3; k++) {
+                for (int k = 0; k < 3; k++) {
 
-                        for (int l = 0; l < 3; l++) {
+                    for (int l = 0; l < 3; l++) {
 
-                                if(board.getTiles()[i+k][j+l].getAvailable() == null){
-                                    for (int m = 0; m <3 ; m++) {
-                                        for (int n = 0; n <3 ; n++) {
-                                            if (board.getTiles()[i + m][j + n].getAvailable() != null) {
-                                                board.getTiles()[i + m][j + n].remove(board.getTiles()[i+k][j+l].getValue());
-                                            }
-                                        }
+
+                        if (board.getTiles()[i + k][j + l].getValue() == 0) {
+                            for (int m = 0; m < 3; m++) {
+                                for (int n = 0; n < 3; n++) {
+                                    if (board.getTiles()[i + m][j + n].getValue() > 0) {
+                                        board.getTiles()[i + k][j + l].remove(board.getTiles()[i + m][j + n].getValue());
+
+
 
                                     }
-                                    System.out.println();
                                 }
 
-
-
-
+                            }
+                            System.out.println();
                         }
 
+
                     }
-                    System.out.println();
+
+
+                }
+                System.out.println();
 
             }
         }
-        for (int i = 0; i <9 ; i++) {
-            for (int j = 0; j <9 ; j++) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 System.out.print(board.getTiles()[i][j].getAvailable() + " ");
 
             }
             System.out.println();
 
+
         }
-
-
     }
 
     private void reduceAvailableValuesInColumn() {
         System.out.println();
         for (int i=0; i<9; i++){
             for (int j=0; j<9; j++){
-                if (board.getTiles()[i][j].getAvailable() == null){
+                if (board.getTiles()[i][j].getValue() == 0){
                     for (int k=0; k<9; k++){
-                        if (board.getTiles()[k][j].getAvailable() != null){
-                            board.getTiles()[k][j].remove(board.getTiles()[i][j].getValue());
+                        if (board.getTiles()[k][j].getValue() > 0){
+                            board.getTiles()[i][j].remove(board.getTiles()[k][j].getValue());
+
+
+
                         }
                     }
                 }
@@ -118,6 +107,7 @@ public class SudokuSolver {
             }
             System.out.println();
         }
+//
 
 
     }
@@ -126,17 +116,19 @@ public class SudokuSolver {
         System.out.println();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (board.getTiles()[i][j].getAvailable() == null) {
+                if (board.getTiles()[i][j].getValue() == 0) {
 
 
                     for (int k = 0; k < 9; k++) {
-                        if (board.getTiles()[i][k].getAvailable() != null) {
-                            board.getTiles()[i][k].remove(board.getTiles()[i][j].getValue());
+                        if (board.getTiles()[i][k].getValue() > 0) {
+                            board.getTiles()[i][j].remove(board.getTiles()[i][k].getValue());
+
+
 
 
                         }
 
-                    }
+                }
 
                 }
             }
@@ -151,5 +143,48 @@ public class SudokuSolver {
         }
 
 
+//
+//
+//
     }
+
+    public void assignValues(){
+        for (int i = 0; i <9 ; i++) {
+            for (int j = 0; j <9 ; j++) {
+                if(board.getTiles()[i][j].getAvailable()!=null && board.getTiles()[i][j].getAvailable().size() ==1){
+                    board.getTiles()[i][j].setValue(board.getTiles()[i][j].getAvailable().iterator().next());
+                    board.getTiles()[i][j].remove(board.getTiles()[i][j].getValue());
+                }
+
+            }
+
+        }
+    }
+
+    public void print(){
+        for (int i = 0; i < 9; i++) {
+            if (i % 3 == 0 ){
+                System.out.println(" __________________________ ");
+            }
+
+            for (int j = 0; j <9 ; j++) {
+                if (j % 3 == 0 ){
+                    System.out.print(" | ");
+                }
+
+                System.out.print(board.getTiles()[i][j].getValue() + " ");
+
+
+
+            }
+
+            System.out.println();
+
+
+        }
+        System.out.println(" __________________________ ");
+
+
+    }
+
 }
