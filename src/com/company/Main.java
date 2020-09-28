@@ -8,8 +8,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-  Board board = new Board(new InputData().getData());
-    View view = new View();
+        Board board = new Board(new InputData().getData());
+        View view = new View();
 
         SudokuSolver sudokuSolver = new SudokuSolver();
 
@@ -18,12 +18,6 @@ public class Main {
         sudokuSolver.assignValues();
 
         view.printBoard(sudokuSolver.getBoard().getTiles());
-
-
-
-
-
-
 
 
     }
