@@ -8,16 +8,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-		Board board = new Board(new InputData().getData());
+  Board board = new Board(new InputData().getData());
+    View view = new View();
+
         SudokuSolver sudokuSolver = new SudokuSolver();
 
         sudokuSolver.start();
-        sudokuSolver.reduceAvailableValues();
 
         sudokuSolver.assignValues();
 
-
-        sudokuSolver.print();
+        view.printBoard(sudokuSolver.getBoard().getTiles());
 
 
 

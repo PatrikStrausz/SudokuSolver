@@ -3,15 +3,14 @@ package controller;
 import com.company.InputData;
 import model.Board;
 
-import java.util.jar.JarOutputStream;
 
 public class SudokuSolver {
     int[][] arr;
     private Board board;
 
-    public void start(){
+    public void start() {
 
-        if(!readData()){
+        if (!readData()) {
             System.out.println("Wrong data source");
             return;
         }
@@ -21,17 +20,20 @@ public class SudokuSolver {
 
     }
 
+    public Board getBoard() {
+        return board;
+    }
 
-    public boolean readData(){
-       arr = new InputData().getData();
-       return true;
+    public boolean readData() {
+        arr = new InputData().getData();
+        return true;
     }
 
     public void reduceAvailableValues() {
         int count = 0;
 
         while (count < 50) {
-                   count++;
+            count++;
             reduceAvailableValuesInRow();
             reduceAvailableValuesInColumn();
             reduceAvailableValuesInSquare();
@@ -54,7 +56,6 @@ public class SudokuSolver {
                                 for (int n = 0; n < 3; n++) {
                                     if (board.getTiles()[i + m][j + n].getValue() > 0) {
                                         board.getTiles()[i + k][j + l].remove(board.getTiles()[i + m][j + n].getValue());
-
 
 
                                     }
@@ -86,13 +87,12 @@ public class SudokuSolver {
 
     private void reduceAvailableValuesInColumn() {
         System.out.println();
-        for (int i=0; i<9; i++){
-            for (int j=0; j<9; j++){
-                if (board.getTiles()[i][j].getValue() == 0){
-                    for (int k=0; k<9; k++){
-                        if (board.getTiles()[k][j].getValue() > 0){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board.getTiles()[i][j].getValue() == 0) {
+                    for (int k = 0; k < 9; k++) {
+                        if (board.getTiles()[k][j].getValue() > 0) {
                             board.getTiles()[i][j].remove(board.getTiles()[k][j].getValue());
-
 
 
                         }
@@ -101,14 +101,12 @@ public class SudokuSolver {
             }
         }
 
-        for (int i = 0; i <9 ; i++) {
-            for (int j = 0; j <9 ; j++) {
-                System.out.print(  board.getTiles()[j][i].getAvailable() + " ");
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(board.getTiles()[j][i].getAvailable() + " ");
             }
             System.out.println();
         }
-//
-
 
     }
 
@@ -124,34 +122,28 @@ public class SudokuSolver {
                             board.getTiles()[i][j].remove(board.getTiles()[i][k].getValue());
 
 
-
-
                         }
 
-                }
+                    }
 
                 }
             }
             System.out.println();
         }
 
-        for (int i = 0; i <9 ; i++) {
-            for (int j = 0; j <9 ; j++) {
-                System.out.print(  board.getTiles()[i][j].getAvailable() + " ");
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                System.out.print(board.getTiles()[i][j].getAvailable() + " ");
             }
             System.out.println();
         }
 
-
-//
-//
-//
     }
 
-    public void assignValues(){
-        for (int i = 0; i <9 ; i++) {
-            for (int j = 0; j <9 ; j++) {
-                if(board.getTiles()[i][j].getAvailable()!=null && board.getTiles()[i][j].getAvailable().size() ==1){
+    public void assignValues() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board.getTiles()[i][j].getAvailable() != null && board.getTiles()[i][j].getAvailable().size() == 1) {
                     board.getTiles()[i][j].setValue(board.getTiles()[i][j].getAvailable().iterator().next());
                     board.getTiles()[i][j].remove(board.getTiles()[i][j].getValue());
                 }
@@ -160,31 +152,5 @@ public class SudokuSolver {
 
         }
     }
-
-    public void print(){
-        for (int i = 0; i < 9; i++) {
-            if (i % 3 == 0 ){
-                System.out.println(" __________________________ ");
-            }
-
-            for (int j = 0; j <9 ; j++) {
-                if (j % 3 == 0 ){
-                    System.out.print(" | ");
-                }
-
-                System.out.print(board.getTiles()[i][j].getValue() + " ");
-
-
-
-            }
-
-            System.out.println();
-
-
-        }
-        System.out.println(" __________________________ ");
-
-
-    }
-
 }
+
