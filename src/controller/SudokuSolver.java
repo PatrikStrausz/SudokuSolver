@@ -30,14 +30,20 @@ public class SudokuSolver {
     }
 
     public void reduceAvailableValues() {
-        int count = 0;
+        Solved();
+    }
 
-        while (count < 50) {
-            count++;
-            reduceAvailableValuesInRow();
-            reduceAvailableValuesInColumn();
-            reduceAvailableValuesInSquare();
-            assignValues();
+    public void Solved(){
+        for (int i = 0; i <9 ; i++) {
+            for (int j = 0; j <9 ; j++) {
+                while (board.getTiles()[i][j].getValue()==0){
+
+                    reduceAvailableValuesInRow();
+                    reduceAvailableValuesInColumn();
+                    reduceAvailableValuesInSquare();
+                    assignValues();
+                }
+            }
         }
     }
 
@@ -55,12 +61,12 @@ public class SudokuSolver {
                                     }
                                 }
                             }
-                            System.out.println();
+
                         }
                     }
 
                 }
-                System.out.println();
+
             }
         }
         for (int i = 0; i < 9; i++) {
@@ -130,5 +136,6 @@ public class SudokuSolver {
             }
         }
     }
+
 }
 
